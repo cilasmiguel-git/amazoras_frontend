@@ -21,7 +21,7 @@ const HomeScreen = () => {
         <div>
           
           <ul className="products">
-            {products.map((product) => (
+            {Array.isArray(products) && products.map((product) => (
               <li key={product._id}>
                 <div className="product">
                   <Link to={'/products/' + product._id}>
