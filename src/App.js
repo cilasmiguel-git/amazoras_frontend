@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import ProductScreen from './Screens/ProductScreen';
 import HomeScreen from './Screens/HomeScreen';
 import CartScreen from './Screens/CartScreen';
@@ -22,6 +22,7 @@ function App() {
 
   const { loading, userInfo: user, error } = userInfo; // Atualize para 'user'
   const isAdmin = user && user.data && user.data.isAdmin ? user.data.isAdmin : false;
+
 
   const openMenu = () => {
     document.querySelector('.sidebar').classList.add('open');
