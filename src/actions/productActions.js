@@ -1,11 +1,10 @@
-import axios from 'axios';
-
+import apiAxios from '../api/apiAxios';
 // Ação para buscar a lista de produtos
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: 'FETCH_PRODUCTS_REQUEST' });
 
-    const response = await axios.get('/api/products');
+    const response = await apiAxios.get('/api/products');
     const products = response.data;
 
     dispatch({ type: 'FETCH_PRODUCTS_SUCCESS', payload: products });
@@ -25,7 +24,7 @@ export const saveProduct = (product) => async (dispatch, getState) => {
       },
     };
 
-    const response = await axios.post('/api/products', product, config);
+    const response = await apiAxios.post('/api/products', product, config);
     const savedProduct = response.data;
 
     dispatch({ type: 'SAVE_PRODUCT_SUCCESS', payload: savedProduct });
@@ -39,7 +38,7 @@ export const getProductDetails = (productId) => async (dispatch) => {
   try {
     dispatch({ type: 'PRODUCT_DETAILS_REQUEST' });
 
-    const response = await axios.get(`/api/products/${productId}`);
+    const response = await apiAxios.get(`/api/products/${productId}`);
     const product = response.data;
 
     dispatch({ type: 'PRODUCT_DETAILS_SUCCESS', payload: product ,success:true});
@@ -59,7 +58,7 @@ export const updateProduct = (productId, productData) => async (dispatch, getSta
         Authorization: `Bearer ${userInfo.data.token}`
       }
     };
-    const response = await axios.put(`/api/products/${productId}`, productData, config);
+    const response = await apiAxios.put(`/api/products/${productId}`, productData, config);
     const updatedProduct = response.data;
     dispatch({ type: 'PRODUCT_UPDATE_SUCCESS', payload: updatedProduct });
   } catch (error) {
@@ -81,7 +80,7 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
       },
     };
 
-    const response = await axios.delete(`/api/products/${productId}`, config);
+    const response = await apiAxios.delete(`/api/products/${productId}`, config);
     const deletedProducts = response.data ;
     dispatch({ type: 'PRODUCT_DELETE_SUCCESS', payload: deletedProducts });
   } catch (error) {

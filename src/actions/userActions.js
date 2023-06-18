@@ -1,11 +1,10 @@
-import axios from 'axios';
 import Cookies from 'js-cookie';
-
+import apiAxios from '../api/apiAxios';
 export const signin = (email, password) => async (dispatch) => {
   dispatch({ type: 'USER_SIGNIN_REQUEST', payload: { email, password } });
 
   try {
-    const { data } = await axios.post('/api/users/signin', { email, password });
+    const { data } = await apiAxios.post('/api/users/signin', { email, password });
 
     // Converter o objeto userInfo em uma string JSON
     const userInfo = JSON.stringify(data);
@@ -23,7 +22,7 @@ export const register = (name, email, password) => async (dispatch) => {
   dispatch({ type: 'USER_REGISTER_REQUEST', payload: { name, email, password } });
 
   try {
-    const { data } = await axios.post('/api/users/register', { name, email, password });
+    const { data } = await apiAxios.post('/api/users/register', { name, email, password });
 
     // Converter o objeto userInfo em uma string JSON
     const userInfo = JSON.stringify(data);
